@@ -1,5 +1,5 @@
 import mariadb from "mariadb";
-import {loadEnvFile} from 'node:process'
+import { loadEnvFile } from 'node:process'
 
 loadEnvFile('./.env');
 
@@ -13,13 +13,18 @@ const connectionPool = mariadb.createPool({
 
 let connection;
 
-try{
-    connection = await connectionPool.getConnection();
-    const rows = await connection.query("SELECT * FROM etudiant")
-    console.log(rows)
-}
-catch(error){
-    console.log(error)
+// ETUDIANT
+
+async function getAllEtudiant() {
+    try {
+        connection = await connectionPool.getConnection();
+        const rows = await connection.query("SELECT * FROM etudiant");
+        connectionPool.end();
+        return rows;
+    }
+    catch (error) {
+        console.log(error)
+    }
 }
 
-connectionPool.end();
+// COURS
