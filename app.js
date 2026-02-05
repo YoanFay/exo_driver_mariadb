@@ -109,4 +109,32 @@ async function getOneCours(cours_id) {
     }
 }
 
-console.log(await getOneCours(1))
+async function addCours(
+    discipline_Id,
+    intervenant_siret,
+    salle_Id
+) {
+    try {
+        connection = await connectionPool.getConnection();
+        const rows = await connection.query(
+            `INSERT INTO cours(
+            discipline_Id, 
+            intervenant_siret,
+            salle_Id
+        )
+            VALUES (
+            '${discipline_Id}',
+            '${intervenant_siret}',
+            '${salle_Id}'
+            )`
+        );
+        connectionPool.end();
+        return rows;
+    }
+    catch (error) {
+        console.log(error);
+        connectionPool.end();
+    }
+}
+
+console.log(await addCours(6, 11111111111111, 4))
