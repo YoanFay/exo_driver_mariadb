@@ -96,4 +96,17 @@ async function getAllCours() {
     }
 }
 
-console.log(await getAllCours())
+async function getOneCours(cours_id) {
+    try {
+        connection = await connectionPool.getConnection();
+        const rows = await connection.query(`SELECT * FROM cours WHERE cours_id = ${cours_id}`);
+        connectionPool.end();
+        return rows;
+    }
+    catch (error) {
+        console.log(error);
+        connectionPool.end();
+    }
+}
+
+console.log(await getOneCours(1))
