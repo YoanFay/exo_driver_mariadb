@@ -71,6 +71,29 @@ async function addEtudiant(
     }
 }
 
+/*
+async function updateEtudiant(
+    etudiant_num_carte_identite,
+    etudiant_nom,
+    etudiant_prenom
+) {
+    //WIP
+}
+*/
+
 // COURS
 
-console.log(await getOneEtudiant(16))
+async function getAllCours() {
+    try {
+        connection = await connectionPool.getConnection();
+        const rows = await connection.query("SELECT * FROM cours");
+        connectionPool.end();
+        return rows;
+    }
+    catch (error) {
+        console.log(error);
+        connectionPool.end();
+    }
+}
+
+console.log(await getAllCours())
