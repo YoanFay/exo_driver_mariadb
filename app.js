@@ -82,6 +82,19 @@ async function updateEtudiant(
 }
 */
 
+async function getEtudiantByCours(cours_thematique) {
+    try {
+        connection = await connectionPool.getConnection();
+        const rows = await connection.query(`SELECT * FROM etudiant WHERE etudiant_Id IN (SELECT etudiant_Id FROM assister WHERE cours_Id = (SELECT cours_id FROM cours WHERE cours_thematique = "${cours_thematique}"))`);
+        connectionPool.end();
+        return rows;
+    }
+    catch (error) {
+        console.log(error);
+        connectionPool.end();
+    }
+}
+
 // COURS
 
 async function getAllCours() {
@@ -137,3 +150,5 @@ async function addCours(
         connectionPool.end();
     }
 }
+
+console.log(await getEtudiantByCours('DevOps - Docker'))
