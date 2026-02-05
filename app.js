@@ -44,7 +44,8 @@ async function getOneEtudiant(etudiant_id) {
 async function addEtudiant(
     etudiant_num_carte_identite,
     etudiant_nom,
-    etudiant_prenom
+    etudiant_prenom,
+    tuteur_Id
 ) {
     try {
         connection = await connectionPool.getConnection();
@@ -59,7 +60,7 @@ async function addEtudiant(
             '${etudiant_num_carte_identite}',
             '${etudiant_nom}',
             '${etudiant_prenom}',
-            1
+            '${tuteur_Id}'
             )`
         );
         connectionPool.end();
@@ -136,5 +137,3 @@ async function addCours(
         connectionPool.end();
     }
 }
-
-console.log(await addCours(6, 11111111111111, 4))
