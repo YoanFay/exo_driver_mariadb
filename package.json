@@ -1,0 +1,24 @@
+{
+  "name": "exo_driver_mariadb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoanFay/exo_driver_mariadb.git"
+  },
+  "author": "YoanF",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YoanFay/exo_driver_mariadb/issues"
+  },
+  "homepage": "https://github.com/YoanFay/exo_driver_mariadb#readme",
+  "dependencies": {
+    "mariadb": "^3.4.5"
+  }
+}
